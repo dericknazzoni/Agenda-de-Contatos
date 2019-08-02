@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D35EEB622F1D48900E20F8D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35EEB522F1D48900E20F8D /* UIColor+Extension.swift */; };
+		1D35EEB922F1D6C800E20F8D /* ContatosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35EEB722F1D6C800E20F8D /* ContatosViewController.swift */; };
+		1D35EEBA22F1D6C800E20F8D /* ContatosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D35EEB822F1D6C800E20F8D /* ContatosViewController.xib */; };
+		1D35EEC422F206DA00E20F8D /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35EEC222F206DA00E20F8D /* CustomTableViewCell.swift */; };
+		1D35EEC522F206DA00E20F8D /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D35EEC322F206DA00E20F8D /* CustomTableViewCell.xib */; };
+		1D35EEC822F481F500E20F8D /* DetalheContatoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35EEC622F481F500E20F8D /* DetalheContatoViewController.swift */; };
+		1D35EEC922F481F500E20F8D /* DetalheContatoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D35EEC722F481F500E20F8D /* DetalheContatoViewController.xib */; };
 		1DFB7D4E22F0CAF000C24C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFB7D4D22F0CAF000C24C17 /* AppDelegate.swift */; };
-		1DFB7D5022F0CAF000C24C17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFB7D4F22F0CAF000C24C17 /* ViewController.swift */; };
 		1DFB7D5322F0CAF000C24C17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DFB7D5122F0CAF000C24C17 /* Main.storyboard */; };
 		1DFB7D5522F0CAF200C24C17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DFB7D5422F0CAF200C24C17 /* Assets.xcassets */; };
 		1DFB7D5822F0CAF200C24C17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DFB7D5622F0CAF200C24C17 /* LaunchScreen.storyboard */; };
@@ -34,9 +40,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D35EEB522F1D48900E20F8D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		1D35EEB722F1D6C800E20F8D /* ContatosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContatosViewController.swift; sourceTree = "<group>"; };
+		1D35EEB822F1D6C800E20F8D /* ContatosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContatosViewController.xib; sourceTree = "<group>"; };
+		1D35EEC222F206DA00E20F8D /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		1D35EEC322F206DA00E20F8D /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		1D35EEC622F481F500E20F8D /* DetalheContatoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetalheContatoViewController.swift; sourceTree = "<group>"; };
+		1D35EEC722F481F500E20F8D /* DetalheContatoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetalheContatoViewController.xib; sourceTree = "<group>"; };
 		1DFB7D4A22F0CAF000C24C17 /* AgendaContatos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgendaContatos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DFB7D4D22F0CAF000C24C17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1DFB7D4F22F0CAF000C24C17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1DFB7D5222F0CAF000C24C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DFB7D5422F0CAF200C24C17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DFB7D5722F0CAF200C24C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,6 +86,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D35EEBB22F1DA8500E20F8D /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1D35EEB522F1D48900E20F8D /* UIColor+Extension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		1D35EEBC22F1DAA000E20F8D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1D35EEB822F1D6C800E20F8D /* ContatosViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1D35EEBD22F1DAA900E20F8D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D35EEB722F1D6C800E20F8D /* ContatosViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		1DFB7D4122F0CAF000C24C17 = {
 			isa = PBXGroup;
 			children = (
@@ -97,12 +133,18 @@
 		1DFB7D4C22F0CAF000C24C17 /* AgendaContatos */ = {
 			isa = PBXGroup;
 			children = (
+				1D35EEBD22F1DAA900E20F8D /* ViewController */,
+				1D35EEBC22F1DAA000E20F8D /* View */,
+				1D35EEBB22F1DA8500E20F8D /* Utils */,
 				1DFB7D4D22F0CAF000C24C17 /* AppDelegate.swift */,
-				1DFB7D4F22F0CAF000C24C17 /* ViewController.swift */,
 				1DFB7D5122F0CAF000C24C17 /* Main.storyboard */,
 				1DFB7D5422F0CAF200C24C17 /* Assets.xcassets */,
 				1DFB7D5622F0CAF200C24C17 /* LaunchScreen.storyboard */,
 				1DFB7D5922F0CAF200C24C17 /* Info.plist */,
+				1D35EEC222F206DA00E20F8D /* CustomTableViewCell.swift */,
+				1D35EEC322F206DA00E20F8D /* CustomTableViewCell.xib */,
+				1D35EEC622F481F500E20F8D /* DetalheContatoViewController.swift */,
+				1D35EEC722F481F500E20F8D /* DetalheContatoViewController.xib */,
 			);
 			path = AgendaContatos;
 			sourceTree = "<group>";
@@ -229,8 +271,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D35EEC922F481F500E20F8D /* DetalheContatoViewController.xib in Resources */,
 				1DFB7D5822F0CAF200C24C17 /* LaunchScreen.storyboard in Resources */,
+				1D35EEBA22F1D6C800E20F8D /* ContatosViewController.xib in Resources */,
 				1DFB7D5522F0CAF200C24C17 /* Assets.xcassets in Resources */,
+				1D35EEC522F206DA00E20F8D /* CustomTableViewCell.xib in Resources */,
 				1DFB7D5322F0CAF000C24C17 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,7 +301,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1DFB7D5022F0CAF000C24C17 /* ViewController.swift in Sources */,
+				1D35EEB622F1D48900E20F8D /* UIColor+Extension.swift in Sources */,
+				1D35EEB922F1D6C800E20F8D /* ContatosViewController.swift in Sources */,
+				1D35EEC422F206DA00E20F8D /* CustomTableViewCell.swift in Sources */,
+				1D35EEC822F481F500E20F8D /* DetalheContatoViewController.swift in Sources */,
 				1DFB7D4E22F0CAF000C24C17 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
