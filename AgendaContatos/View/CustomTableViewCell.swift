@@ -17,7 +17,10 @@ class CustomTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        contatoImagem.layer.cornerRadius = contatoImagem.frame.width/2
+       
     }
+    
     
     override func prepareForReuse() {
         super.prepareForReuse()

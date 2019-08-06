@@ -9,9 +9,17 @@
 import UIKit
 
 class AdicionarContatoViewController: UIViewController {
-
+    
+    @IBOutlet var perfilView: UIImageView!
+    @IBOutlet var apelidoTextField: UITextField!
+    @IBOutlet var telefoneTextField: UITextField!
+    @IBOutlet var salvarButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Novo Contato"
+        salvarButton.layer.cornerRadius = 10
+        perfilView.layer.cornerRadius = perfilView.frame.width/2
 
         // Do any additional setup after loading the view.
     }

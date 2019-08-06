@@ -21,6 +21,10 @@ class DetalheContatoViewController: UIViewController {
         super.viewDidLoad()
         contactName.text = contactText
         title = "Detalhes"
+        fotoPerfil.layer.cornerRadius = fotoPerfil.frame.width/2
+        ligarButton.layer.cornerRadius = 10
+        
+
 
         // Do any additional setup after loading the view.
     }

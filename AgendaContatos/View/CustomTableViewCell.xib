@@ -28,27 +28,27 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UIg-Ga-eKy">
-                        <rect key="frame" x="0.0" y="11" width="88" height="59"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(+55 11)947377325" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thU-pr-XB1">
                         <rect key="frame" x="96" y="45" width="346" height="34"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="UIg-Ga-eKy">
+                        <rect key="frame" x="8" y="4" width="70" height="70"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ala-hk-YnB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="96" id="0ev-WV-Slk"/>
                     <constraint firstAttribute="trailing" secondItem="thU-pr-XB1" secondAttribute="trailing" constant="83" id="4uc-5n-xfe"/>
-                    <constraint firstItem="UIg-Ga-eKy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="6Hp-0k-T00"/>
-                    <constraint firstAttribute="bottom" secondItem="UIg-Ga-eKy" secondAttribute="bottom" constant="19.5" id="H1D-30-UEV"/>
+                    <constraint firstItem="UIg-Ga-eKy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="6Hp-0k-T00"/>
+                    <constraint firstAttribute="bottom" secondItem="UIg-Ga-eKy" secondAttribute="bottom" constant="15.5" id="H1D-30-UEV"/>
                     <constraint firstItem="thU-pr-XB1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="96" id="Jdp-me-7Jd"/>
                     <constraint firstAttribute="bottom" secondItem="thU-pr-XB1" secondAttribute="bottom" constant="10.5" id="Jiv-8I-Sdg"/>
                     <constraint firstItem="ala-hk-YnB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Jul-7m-z2k"/>
-                    <constraint firstItem="UIg-Ga-eKy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Xsy-bI-EfV"/>
+                    <constraint firstItem="UIg-Ga-eKy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="Xsy-bI-EfV"/>
                     <constraint firstItem="thU-pr-XB1" firstAttribute="height" secondItem="ala-hk-YnB" secondAttribute="height" id="Ybe-bc-WwX"/>
-                    <constraint firstItem="ala-hk-YnB" firstAttribute="leading" secondItem="UIg-Ga-eKy" secondAttribute="trailing" constant="8" symbolic="YES" id="eJH-ac-src"/>
+                    <constraint firstItem="ala-hk-YnB" firstAttribute="leading" secondItem="UIg-Ga-eKy" secondAttribute="trailing" constant="18" id="eJH-ac-src"/>
                     <constraint firstAttribute="trailing" secondItem="ala-hk-YnB" secondAttribute="trailing" constant="83" id="xLj-VK-iAo"/>
                 </constraints>
             </tableViewCellContentView>
@@ -61,4 +61,7 @@
             <point key="canvasLocation" x="128.80000000000001" y="89.055472263868069"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Image" width="960" height="960"/>
+    </resources>
 </document>
