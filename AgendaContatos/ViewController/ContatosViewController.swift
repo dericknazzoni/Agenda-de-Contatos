@@ -10,6 +10,7 @@ import UIKit
 
 class ContatosViewController: UIViewController {
 
+    @IBOutlet var resultLabel: UILabel!
     @IBOutlet weak var tabelaContatos: UITableView!
     @IBOutlet weak var buscaContato: UISearchBar!
     
@@ -50,6 +51,16 @@ class ContatosViewController: UIViewController {
         tabelaContatos.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tabelaContatos.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         
+    }
+    
+    func alert(title: String, message: String, yesAction: @escaping ()-> Void){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            yesAction()
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
 
     
@@ -97,10 +108,16 @@ extension ContatosViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
-        let deleteAction = UIContextualAction(style: .destructive, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
-            self.contatos.remove(at: indexPath.row)
-            self.tabelaContatos.reloadData()
-            success(true)
+       
+        let deleteAction = UIContextualAction(style: .destructive, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:@escaping (Bool) -> Void) in
+            
+            self.alert(title: "Apagar", message: "Deseja realmente apagar este contato de sua lista?", yesAction: {
+                self.contatos.remove(at: indexPath.row)
+                self.tabelaContatos.reloadData()
+                success(true)
+            })
+
+ 
         })
         deleteAction.backgroundColor = UIColor.buttonColor
         return UISwipeActionsConfiguration(actions: [deleteAction])
@@ -111,11 +128,26 @@ extension ContatosViewController: UISearchBarDelegate{
         searchFilter = contatos.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
         searching = true
         tabelaContatos.reloadData()
+        setupView()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searching = false
         buscaContato.text = ""
         tabelaContatos.reloadData()
+        setupView()
+    }
+    
+    func setupView() {
+        if searchFilter.count == 0 {
+            self.tabelaContatos.isHidden = true
+            self.resultLabel.isHidden = false
+            self.resultLabel.text = "Nenhum resultado encontrado"
+            self.resultLabel.textColor = UIColor.secondaryColor
+            self.resultLabel.adjustsFontSizeToFitWidth = true
+            
+        } else {
+            self.tabelaContatos.isHidden = false
+        }
     }
 }
 
