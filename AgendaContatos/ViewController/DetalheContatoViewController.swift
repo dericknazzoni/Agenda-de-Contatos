@@ -15,29 +15,36 @@ class DetalheContatoViewController: UIViewController {
     @IBOutlet var contactName: UILabel!
     @IBOutlet var fotoPerfil: UIImageView!
     
-    var contactText: String?
-    
+    var contato: Contato?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        contactName.text = contactText
         title = "Detalhes"
+        loadContato()
+        layoutLabels()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(addViewController))
+
+    }
+    
+    func loadContato(){
+        if let c = self.contato{
+            contactName.text = c.name
+            contactTelefone.text = c.phone
+        }
+        
+    }
+    func layoutLabels(){
         fotoPerfil.layer.cornerRadius = fotoPerfil.frame.width/2
         ligarButton.layer.cornerRadius = 10
+        ligarButton.backgroundColor = UIColor.buttonColor
         
-
-
-        // Do any additional setup after loading the view.
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc private func addViewController(){
+        let viewController = AdicionarContatoViewController()
+        viewController.contato = self.contato
+        navigationController?.pushViewController(viewController, animated: true)
+    
     }
-    */
 
 }

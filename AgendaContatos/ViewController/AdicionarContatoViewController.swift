@@ -15,24 +15,33 @@ class AdicionarContatoViewController: UIViewController {
     @IBOutlet var telefoneTextField: UITextField!
     @IBOutlet var salvarButton: UIButton!
     
+    var contato: Contato?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Novo Contato"
+        layoutSetup()
+        loadContatoEditar()
+
+    }
+    
+    func layoutSetup(){
         salvarButton.layer.cornerRadius = 10
         perfilView.layer.cornerRadius = perfilView.frame.width/2
-
-        // Do any additional setup after loading the view.
+        salvarButton.backgroundColor = UIColor.buttonColor
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func loadContatoEditar(){
+        if let c = self.contato{
+            apelidoTextField.text = c.name
+            telefoneTextField.text = c.phone
+        }
     }
-    */
-
+    
+    func addContact(){
+        
+    }
+    
+    
+    
 }

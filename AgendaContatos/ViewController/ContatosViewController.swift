@@ -14,11 +14,10 @@ class ContatosViewController: UIViewController {
     @IBOutlet weak var tabelaContatos: UITableView!
     @IBOutlet weak var buscaContato: UISearchBar!
     
-    var contatos: [String] = ["Derick", "Breno", "Renato", "Gato", "Gabriel", "Pedro", "Xandin", "Lyra", "Maurao",
-                              "Bruno", "Renan"]
+    var separatedContatos: [[Contato]] = []
+    var contatos: [Contato] = []
     
-    var selectedContact: String?
-    var searchFilter = [String]()
+    var searchFilter = [Contato]()
     var searching: Bool = false
     
     
@@ -29,8 +28,78 @@ class ContatosViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector
             (addViewController))
         setBackground()
+        loadContatos()
 
     }
+    
+    func loadContatos(){
+        
+        var c1 = Contato()
+        c1.name = "Derick"
+        c1.phone = "947377325"
+        var c2 = Contato()
+        c2.name = "Breno"
+        c2.phone = "94737-7325"
+        var c3 = Contato()
+        c3.name = "Renato"
+        c3.phone = "967020576"
+        var c4 = Contato()
+        c4.name = "Lyra"
+        c4.phone = "99999999999"
+        var c5 = Contato()
+        c5.name = "Danilo"
+        c5.phone = "947377325"
+        
+        contatos.append(c1)
+        contatos.append(c2)
+        contatos.append(c3)
+        contatos.append(c4)
+        contatos.append(c5)
+        var c6 = Contato()
+        c6.name = "Alberto"
+        c6.phone = "947377325"
+        var c7 = Contato()
+        c7.name = "Andrade"
+        c7.phone = "94737-7325"
+        var c8 = Contato()
+        c8.name = "Carlos"
+        c8.phone = "967020576"
+        var c9 = Contato()
+        c9.name = "Cintia"
+        c9.phone = "99999999999"
+        var c0 = Contato()
+        c0.name = "Barbaro"
+        c0.phone = "947377325"
+        
+        contatos.append(c6)
+        contatos.append(c7)
+        contatos.append(c8)
+        contatos.append(c9)
+        contatos.append(c0)
+        
+        let groupedContacts = sortLists(contatos: contatos)
+        self.separatedContatos.append(contentsOf: groupedContacts)
+        self.tabelaContatos.reloadData()
+    }
+    
+    func sortLists(contatos: [Contato]) -> [[Contato]]{
+        let sortedContacts = contatos.sorted(by: { $0.name < $1.name })
+        
+        let groupedContacts = sortedContacts.reduce([[Contato]]()) {
+            guard var last = $0.last else { return [[$1]] }
+            var collection = $0
+            if last.first!.name.first == $1.name.first {
+                last += [$1]
+                collection[collection.count - 1] = last
+            } else {
+                collection += [[$1]]
+            }
+            return collection
+        }
+        return groupedContacts
+        
+    }
+    
     @objc private func addViewController(){
         navigationController?.pushViewController(AdicionarContatoViewController(), animated: true)
     }
@@ -62,6 +131,26 @@ class ContatosViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 80.0, height: 30.0))
+        let label = UILabel(frame: CGRect(x: 10, y: 0, width: 30, height: 30))
+        guard let text = separatedContatos[section][0].name.first else { return nil }
+        label.text = "\(text)"
+        label.textColor = UIColor.primaryColor
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        view.backgroundColor = UIColor.secondaryColor
+        view.addSubview(label)
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30.0
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return separatedContatos.count
+    }
 
     
 }
@@ -70,7 +159,7 @@ extension ContatosViewController: UITableViewDataSource {
         if searching{
             return searchFilter.count
         }else{
-            return contatos.count
+            return separatedContatos[section].count
         }
         
     }
@@ -80,24 +169,30 @@ extension ContatosViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as? CustomTableViewCell else {
             return UITableViewCell()
         }
+        
+        var contato = Contato()
+        
+        
         if searching{
-            cell.contatoNome.text = searchFilter[indexPath.row]
+            contato = searchFilter[indexPath.row]
         }else{
-            cell.contatoNome.text = contatos[indexPath.row]
+            contato = separatedContatos[indexPath.section][indexPath.row]
         }
+        cell.contatoNome.text = contato.name
         cell.contatoNome.font = UIFont.boldSystemFont(ofSize: 20)
         cell.contatoNome.textColor = UIColor.primaryColor
         cell.contatoTelefone.textColor = UIColor.secondaryColor
+        cell.contatoTelefone.text = contato.phone
         tableView.tableFooterView = UIView()
         return cell
     }
 }
 extension ContatosViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contactSelected = contatos[indexPath.row]
-        self.selectedContact = contactSelected
+        let contactSelected = separatedContatos[indexPath.section][indexPath.row]
         let testeViewController = DetalheContatoViewController()
-        testeViewController.contactText = selectedContact
+        testeViewController.contato = contactSelected
+        
         self.navigationController?.pushViewController(testeViewController, animated: true)
     }
     
@@ -112,7 +207,7 @@ extension ContatosViewController: UITableViewDelegate {
         let deleteAction = UIContextualAction(style: .destructive, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:@escaping (Bool) -> Void) in
             
             self.alert(title: "Apagar", message: "Deseja realmente apagar este contato de sua lista?", yesAction: {
-                self.contatos.remove(at: indexPath.row)
+                self.separatedContatos[indexPath.section].remove(at: indexPath.row)
                 self.tabelaContatos.reloadData()
                 success(true)
             })
@@ -125,7 +220,8 @@ extension ContatosViewController: UITableViewDelegate {
 }
 extension ContatosViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchFilter = contatos.filter({$0.lowercased().prefix(searchText.count) == searchText.lowercased()})
+
+        searchFilter = contatos.filter({$0.name.lowercased().prefix(searchText.count) == searchText.lowercased()})
         searching = true
         tabelaContatos.reloadData()
         setupView()
@@ -136,7 +232,7 @@ extension ContatosViewController: UISearchBarDelegate{
         tabelaContatos.reloadData()
         setupView()
     }
-    
+
     func setupView() {
         if searchFilter.count == 0 {
             self.tabelaContatos.isHidden = true
@@ -144,10 +240,11 @@ extension ContatosViewController: UISearchBarDelegate{
             self.resultLabel.text = "Nenhum resultado encontrado"
             self.resultLabel.textColor = UIColor.secondaryColor
             self.resultLabel.adjustsFontSizeToFitWidth = true
-            
+
         } else {
             self.tabelaContatos.isHidden = false
         }
     }
-}
 
+
+}

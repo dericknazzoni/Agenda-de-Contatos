@@ -16,8 +16,8 @@
 		1D35EEC922F481F500E20F8D /* DetalheContatoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D35EEC722F481F500E20F8D /* DetalheContatoViewController.xib */; };
 		1D35EED022F4B9D400E20F8D /* AdicionarContatoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35EECE22F4B9D400E20F8D /* AdicionarContatoViewController.swift */; };
 		1D35EED122F4B9D400E20F8D /* AdicionarContatoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D35EECF22F4B9D400E20F8D /* AdicionarContatoViewController.xib */; };
+		1D48141522FB44BE003450DE /* Contato.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D48141422FB44BE003450DE /* Contato.swift */; };
 		1DFB7D4E22F0CAF000C24C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFB7D4D22F0CAF000C24C17 /* AppDelegate.swift */; };
-		1DFB7D5322F0CAF000C24C17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DFB7D5122F0CAF000C24C17 /* Main.storyboard */; };
 		1DFB7D5522F0CAF200C24C17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DFB7D5422F0CAF200C24C17 /* Assets.xcassets */; };
 		1DFB7D5822F0CAF200C24C17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DFB7D5622F0CAF200C24C17 /* LaunchScreen.storyboard */; };
 		1DFB7D6322F0CAF200C24C17 /* AgendaContatosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFB7D6222F0CAF200C24C17 /* AgendaContatosTests.swift */; };
@@ -51,9 +51,9 @@
 		1D35EEC722F481F500E20F8D /* DetalheContatoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetalheContatoViewController.xib; sourceTree = "<group>"; };
 		1D35EECE22F4B9D400E20F8D /* AdicionarContatoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdicionarContatoViewController.swift; sourceTree = "<group>"; };
 		1D35EECF22F4B9D400E20F8D /* AdicionarContatoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdicionarContatoViewController.xib; sourceTree = "<group>"; };
+		1D48141422FB44BE003450DE /* Contato.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contato.swift; sourceTree = "<group>"; };
 		1DFB7D4A22F0CAF000C24C17 /* AgendaContatos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgendaContatos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DFB7D4D22F0CAF000C24C17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1DFB7D5222F0CAF000C24C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DFB7D5422F0CAF200C24C17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1DFB7D5722F0CAF200C24C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1DFB7D5922F0CAF200C24C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,6 +101,7 @@
 		1D35EEBC22F1DAA000E20F8D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1D35EECF22F4B9D400E20F8D /* AdicionarContatoViewController.xib */,
 				1D35EEC222F206DA00E20F8D /* CustomTableViewCell.swift */,
 				1D35EEC322F206DA00E20F8D /* CustomTableViewCell.xib */,
 				1D35EEC722F481F500E20F8D /* DetalheContatoViewController.xib */,
@@ -112,10 +113,19 @@
 		1D35EEBD22F1DAA900E20F8D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1D35EECE22F4B9D400E20F8D /* AdicionarContatoViewController.swift */,
 				1D35EEC622F481F500E20F8D /* DetalheContatoViewController.swift */,
 				1D35EEB722F1D6C800E20F8D /* ContatosViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		1D69368722FC647F003D78A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1D48141422FB44BE003450DE /* Contato.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1DFB7D4122F0CAF000C24C17 = {
@@ -141,16 +151,14 @@
 		1DFB7D4C22F0CAF000C24C17 /* AgendaContatos */ = {
 			isa = PBXGroup;
 			children = (
+				1D69368722FC647F003D78A9 /* Model */,
 				1D35EEBD22F1DAA900E20F8D /* ViewController */,
 				1D35EEBC22F1DAA000E20F8D /* View */,
 				1D35EEBB22F1DA8500E20F8D /* Utils */,
 				1DFB7D4D22F0CAF000C24C17 /* AppDelegate.swift */,
-				1DFB7D5122F0CAF000C24C17 /* Main.storyboard */,
 				1DFB7D5422F0CAF200C24C17 /* Assets.xcassets */,
 				1DFB7D5622F0CAF200C24C17 /* LaunchScreen.storyboard */,
 				1DFB7D5922F0CAF200C24C17 /* Info.plist */,
-				1D35EECE22F4B9D400E20F8D /* AdicionarContatoViewController.swift */,
-				1D35EECF22F4B9D400E20F8D /* AdicionarContatoViewController.xib */,
 			);
 			path = AgendaContatos;
 			sourceTree = "<group>";
@@ -283,7 +291,6 @@
 				1D35EEBA22F1D6C800E20F8D /* ContatosViewController.xib in Resources */,
 				1DFB7D5522F0CAF200C24C17 /* Assets.xcassets in Resources */,
 				1D35EEC522F206DA00E20F8D /* CustomTableViewCell.xib in Resources */,
-				1DFB7D5322F0CAF000C24C17 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D48141522FB44BE003450DE /* Contato.swift in Sources */,
 				1D35EED022F4B9D400E20F8D /* AdicionarContatoViewController.swift in Sources */,
 				1D35EEB622F1D48900E20F8D /* UIColor+Extension.swift in Sources */,
 				1D35EEB922F1D6C800E20F8D /* ContatosViewController.swift in Sources */,
@@ -349,14 +357,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1DFB7D5122F0CAF000C24C17 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1DFB7D5222F0CAF000C24C17 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1DFB7D5622F0CAF200C24C17 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
