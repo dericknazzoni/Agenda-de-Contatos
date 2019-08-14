@@ -52,6 +52,9 @@
                     <state key="normal" title="Salvar">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="addContact:" destination="-1" eventType="touchUpInside" id="YhN-N1-rg2"/>
+                    </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="s0p-0K-anA">
                     <rect key="frame" x="127" y="86" width="160" height="160"/>

@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol ContatosProtocol {
+    func updateContact(newContact: Contato)
+}
+
+
 class DetalheContatoViewController: UIViewController {
 
     @IBOutlet var ligarButton: UIButton!
@@ -43,8 +48,15 @@ class DetalheContatoViewController: UIViewController {
     @objc private func addViewController(){
         let viewController = AdicionarContatoViewController()
         viewController.contato = self.contato
+        viewController.delegate = self
         navigationController?.pushViewController(viewController, animated: true)
     
     }
 
+}
+extension DetalheContatoViewController: ContatosProtocol{
+    func updateContact(newContact: Contato) {
+        self.contato = newContact
+        loadContato()
+    }
 }

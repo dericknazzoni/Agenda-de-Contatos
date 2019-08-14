@@ -8,16 +8,20 @@
 
 import UIKit
 
+protocol AddContactProtocol{
+    func addNewContact(newContact: Contato)
+}
+
 class ContatosViewController: UIViewController {
 
     @IBOutlet var resultLabel: UILabel!
     @IBOutlet weak var tabelaContatos: UITableView!
     @IBOutlet weak var buscaContato: UISearchBar!
     
-    var separatedContatos: [[Contato]] = []
+    var contatosAtuais: [[Contato]] = []
     var contatos: [Contato] = []
     
-    var searchFilter = [Contato]()
+    var contatosFiltrados = [[Contato]]()
     var searching: Bool = false
     
     
@@ -77,18 +81,23 @@ class ContatosViewController: UIViewController {
         contatos.append(c9)
         contatos.append(c0)
         
-        let groupedContacts = sortLists(contatos: contatos)
-        self.separatedContatos.append(contentsOf: groupedContacts)
+        reloadData(c: contatos)
+    }
+    
+    func reloadData(c: [Contato]) {
+        contatosAtuais = []
+        let groupedContacts = sortLists(contatos: c)
+        self.contatosAtuais.append(contentsOf: groupedContacts)
         self.tabelaContatos.reloadData()
     }
     
     func sortLists(contatos: [Contato]) -> [[Contato]]{
-        let sortedContacts = contatos.sorted(by: { $0.name < $1.name })
+        let sortedContacts = contatos.sorted(by: { $0.name.lowercased() < $1.name.lowercased() })
         
         let groupedContacts = sortedContacts.reduce([[Contato]]()) {
             guard var last = $0.last else { return [[$1]] }
             var collection = $0
-            if last.first!.name.first == $1.name.first {
+            if last.first!.name.lowercased().first == $1.name.lowercased().first {
                 last += [$1]
                 collection[collection.count - 1] = last
             } else {
@@ -101,7 +110,9 @@ class ContatosViewController: UIViewController {
     }
     
     @objc private func addViewController(){
-        navigationController?.pushViewController(AdicionarContatoViewController(), animated: true)
+        let viewController = AdicionarContatoViewController()
+        viewController.delegateAdd = self
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     private func setUpNavigation(){
@@ -135,7 +146,13 @@ class ContatosViewController: UIViewController {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 80.0, height: 30.0))
         let label = UILabel(frame: CGRect(x: 10, y: 0, width: 30, height: 30))
-        guard let text = separatedContatos[section][0].name.first else { return nil }
+        var contato: Contato?
+        if searching{
+            contato = contatosFiltrados[section][0]
+        } else {
+            contato = contatosAtuais[section][0]
+        }
+        guard let text = contato?.name.first else { return nil }
         label.text = "\(text)"
         label.textColor = UIColor.primaryColor
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -149,17 +166,20 @@ class ContatosViewController: UIViewController {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return separatedContatos.count
+        if searching{
+            return contatosFiltrados.count
+        }else{
+            return contatosAtuais.count
+        }
     }
 
-    
 }
 extension ContatosViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searching{
-            return searchFilter.count
+            return contatosFiltrados[section].count
         }else{
-            return separatedContatos[section].count
+            return contatosAtuais[section].count
         }
         
     }
@@ -174,9 +194,9 @@ extension ContatosViewController: UITableViewDataSource {
         
         
         if searching{
-            contato = searchFilter[indexPath.row]
+            contato = contatosFiltrados[indexPath.section][indexPath.row]
         }else{
-            contato = separatedContatos[indexPath.section][indexPath.row]
+            contato = contatosAtuais[indexPath.section][indexPath.row]
         }
         cell.contatoNome.text = contato.name
         cell.contatoNome.font = UIFont.boldSystemFont(ofSize: 20)
@@ -189,7 +209,7 @@ extension ContatosViewController: UITableViewDataSource {
 }
 extension ContatosViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contactSelected = separatedContatos[indexPath.section][indexPath.row]
+        let contactSelected = contatosAtuais[indexPath.section][indexPath.row]
         let testeViewController = DetalheContatoViewController()
         testeViewController.contato = contactSelected
         
@@ -207,7 +227,7 @@ extension ContatosViewController: UITableViewDelegate {
         let deleteAction = UIContextualAction(style: .destructive, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:@escaping (Bool) -> Void) in
             
             self.alert(title: "Apagar", message: "Deseja realmente apagar este contato de sua lista?", yesAction: {
-                self.separatedContatos[indexPath.section].remove(at: indexPath.row)
+                self.contatosAtuais[indexPath.section].remove(at: indexPath.row)
                 self.tabelaContatos.reloadData()
                 success(true)
             })
@@ -221,7 +241,8 @@ extension ContatosViewController: UITableViewDelegate {
 extension ContatosViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
-        searchFilter = contatos.filter({$0.name.lowercased().prefix(searchText.count) == searchText.lowercased()})
+        let filteredContacts = contatos.filter({$0.name.lowercased().prefix(searchText.count) == searchText.lowercased()})
+        contatosFiltrados = sortLists(contatos: filteredContacts)
         searching = true
         tabelaContatos.reloadData()
         setupView()
@@ -234,7 +255,7 @@ extension ContatosViewController: UISearchBarDelegate{
     }
 
     func setupView() {
-        if searchFilter.count == 0 {
+        if contatosFiltrados.count == 0 {
             self.tabelaContatos.isHidden = true
             self.resultLabel.isHidden = false
             self.resultLabel.text = "Nenhum resultado encontrado"
@@ -245,6 +266,13 @@ extension ContatosViewController: UISearchBarDelegate{
             self.tabelaContatos.isHidden = false
         }
     }
-
-
+}
+extension ContatosViewController: AddContactProtocol{
+    func addNewContact(newContact: Contato) {
+        var c = self.contatos
+        c.append(newContact)
+        reloadData(c: c)
+    }
+    
+    
 }

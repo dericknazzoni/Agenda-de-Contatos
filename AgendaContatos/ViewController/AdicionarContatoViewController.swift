@@ -15,6 +15,9 @@ class AdicionarContatoViewController: UIViewController {
     @IBOutlet var telefoneTextField: UITextField!
     @IBOutlet var salvarButton: UIButton!
     
+    var delegate: ContatosProtocol?
+    var delegateAdd: AddContactProtocol?
+    
     var contato: Contato?
     
     override func viewDidLoad() {
@@ -38,10 +41,22 @@ class AdicionarContatoViewController: UIViewController {
         }
     }
     
-    func addContact(){
+    @IBAction func addContact(_ sender: Any) {
+        if var c = self.contato{
+            c.name = apelidoTextField.text ?? ""
+            c.phone = telefoneTextField.text ?? ""
+            delegate?.updateContact(newContact: c)
+            self.navigationController?.popViewController(animated: true)
+        
+        }else {
+            var newContact = Contato()
+            newContact.name = apelidoTextField.text ?? ""
+            newContact.phone = telefoneTextField.text ?? ""
+            delegateAdd?.addNewContact(newContact: newContact)
+            self.navigationController?.popViewController(animated: true)
+            
+        }
         
     }
-    
-    
-    
+
 }
