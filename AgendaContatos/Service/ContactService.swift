@@ -27,7 +27,7 @@ class ContactService{
     private static let baseUrl: String = "http://192.168.0.109:8080/users"
     
     
-    class func loadContacts(completionHandler: @escaping ([Contato]?, ContactErr?) -> Void){
+    class func loadContacts(completionHandler: @escaping ([Contato?]?, ContactErr?) -> Void){
         guard let myUrl = URL(string: baseUrl) else {
             print("oi1")
             return completionHandler(nil, .url)
@@ -37,7 +37,7 @@ class ContactService{
                 
                 guard let response = response as? HTTPURLResponse else {
                     return completionHandler(nil, .noResponse)
-                    }
+                }
                 print(response)
                 if response.statusCode == HtppResponse.success.rawValue{
                     guard let data = data else {
@@ -47,9 +47,10 @@ class ContactService{
                     }
                     do{
                         
-                        let contact = try JSONDecoder().decode([Contato]?.self, from: data )
+                        let contact = try JSONDecoder().decode([Contato?].self, from: data )
                         print("oi4")
-                        completionHandler(contact, nil)
+                        let contatos = contact.filter({$0 != nil})
+                        completionHandler(contatos, nil)
                     }catch{
                         print("response")
                         completionHandler(nil, .invalidJson)

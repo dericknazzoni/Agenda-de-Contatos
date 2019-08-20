@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D26E0142305C844002988AB /* APIServicePronta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D26E0132305C844002988AB /* APIServicePronta.swift */; };
+		1D26E0172305D137002988AB /* ContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D26E0162305D137002988AB /* ContactService.swift */; };
 		1D35EEB622F1D48900E20F8D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35EEB522F1D48900E20F8D /* UIColor+Extension.swift */; };
 		1D35EEB922F1D6C800E20F8D /* ContatosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D35EEB722F1D6C800E20F8D /* ContatosViewController.swift */; };
 		1D35EEBA22F1D6C800E20F8D /* ContatosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D35EEB822F1D6C800E20F8D /* ContatosViewController.xib */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D26E0132305C844002988AB /* APIServicePronta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServicePronta.swift; sourceTree = "<group>"; };
+		1D26E0162305D137002988AB /* ContactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactService.swift; sourceTree = "<group>"; };
 		1D35EEB522F1D48900E20F8D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		1D35EEB722F1D6C800E20F8D /* ContatosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContatosViewController.swift; sourceTree = "<group>"; };
 		1D35EEB822F1D6C800E20F8D /* ContatosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContatosViewController.xib; sourceTree = "<group>"; };
@@ -90,9 +94,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D26E0152305D113002988AB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1D26E0162305D137002988AB /* ContactService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		1D35EEBB22F1DA8500E20F8D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				1D26E0132305C844002988AB /* APIServicePronta.swift */,
 				1D35EEB522F1D48900E20F8D /* UIColor+Extension.swift */,
 			);
 			path = Utils;
@@ -151,6 +164,7 @@
 		1DFB7D4C22F0CAF000C24C17 /* AgendaContatos */ = {
 			isa = PBXGroup;
 			children = (
+				1D26E0152305D113002988AB /* Service */,
 				1D69368722FC647F003D78A9 /* Model */,
 				1D35EEBD22F1DAA900E20F8D /* ViewController */,
 				1D35EEBC22F1DAA000E20F8D /* View */,
@@ -316,6 +330,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D48141522FB44BE003450DE /* Contato.swift in Sources */,
+				1D26E0142305C844002988AB /* APIServicePronta.swift in Sources */,
+				1D26E0172305D137002988AB /* ContactService.swift in Sources */,
 				1D35EED022F4B9D400E20F8D /* AdicionarContatoViewController.swift in Sources */,
 				1D35EEB622F1D48900E20F8D /* UIColor+Extension.swift in Sources */,
 				1D35EEB922F1D6C800E20F8D /* ContatosViewController.swift in Sources */,

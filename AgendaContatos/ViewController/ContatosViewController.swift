@@ -19,7 +19,7 @@ class ContatosViewController: UIViewController {
     @IBOutlet weak var buscaContato: UISearchBar!
     
     var contatosAtuais: [[Contato]] = []
-    var contatos: [Contato] = []
+    var contatos: [Contato]?
     
     var contatosFiltrados = [[Contato]]()
     var searching: Bool = false
@@ -32,72 +32,95 @@ class ContatosViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector
             (addViewController))
         setBackground()
-        loadContatos()
+        ContactService.loadContacts(completionHandler: { contato, error in
+            if error == nil{
+                guard let contact = contato else { return }
+                self.contatos = []
+                for c in contact {
+                    if let contato = c {
+                        self.contatos?.append(contato)
+                    }
+                }
+                guard let newList = self.contatos else { return }
+                self.reloadData(c: newList)
+            }
+            DispatchQueue.main.async {
+                self.tabelaContatos.reloadData()
+            }
+            
+            
+        })
 
     }
     
-    func loadContatos(){
-        
-        var c1 = Contato()
-        c1.name = "Derick"
-        c1.phone = "947377325"
-        var c2 = Contato()
-        c2.name = "Breno"
-        c2.phone = "94737-7325"
-        var c3 = Contato()
-        c3.name = "Renato"
-        c3.phone = "967020576"
-        var c4 = Contato()
-        c4.name = "Lyra"
-        c4.phone = "99999999999"
-        var c5 = Contato()
-        c5.name = "Danilo"
-        c5.phone = "947377325"
-        
-        contatos.append(c1)
-        contatos.append(c2)
-        contatos.append(c3)
-        contatos.append(c4)
-        contatos.append(c5)
-        var c6 = Contato()
-        c6.name = "Alberto"
-        c6.phone = "947377325"
-        var c7 = Contato()
-        c7.name = "Andrade"
-        c7.phone = "94737-7325"
-        var c8 = Contato()
-        c8.name = "Carlos"
-        c8.phone = "967020576"
-        var c9 = Contato()
-        c9.name = "Cintia"
-        c9.phone = "99999999999"
-        var c0 = Contato()
-        c0.name = "Barbaro"
-        c0.phone = "947377325"
-        
-        contatos.append(c6)
-        contatos.append(c7)
-        contatos.append(c8)
-        contatos.append(c9)
-        contatos.append(c0)
-        
-        reloadData(c: contatos)
-    }
+//    func loadContatos(){
+//
+//        var c1 = Contato()
+//        c1.name = "Derick"
+//        c1.phone = "947377325"
+//        var c2 = Contato()
+//        c2.name = "Breno"
+//        c2.phone = "94737-7325"
+//        var c3 = Contato()
+//        c3.name = "Renato"
+//        c3.phone = "967020576"
+//        var c4 = Contato()
+//        c4.name = "Lyra"
+//        c4.phone = "99999999999"
+//        var c5 = Contato()
+//        c5.name = "Danilo"
+//        c5.phone = "947377325"
+//
+//        contatos.append(c1)
+//        contatos.append(c2)
+//        contatos.append(c3)
+//        contatos.append(c4)
+//        contatos.append(c5)
+//        var c6 = Contato()
+//        c6.name = "Alberto"
+//        c6.phone = "947377325"
+//        var c7 = Contato()
+//        c7.name = "Andrade"
+//        c7.phone = "94737-7325"
+//        var c8 = Contato()
+//        c8.name = "Carlos"
+//        c8.phone = "967020576"
+//        var c9 = Contato()
+//        c9.name = "Cintia"
+//        c9.phone = "99999999999"
+//        var c0 = Contato()
+//        c0.name = "Barbaro"
+//        c0.phone = "947377325"
+//
+//        contatos.append(c6)
+//        contatos.append(c7)
+//        contatos.append(c8)
+//        contatos.append(c9)
+//        contatos.append(c0)
+//
+//        reloadData(c: contatos)
+//      }
     
     func reloadData(c: [Contato]) {
         contatosAtuais = []
         let groupedContacts = sortLists(contatos: c)
         self.contatosAtuais.append(contentsOf: groupedContacts)
-        self.tabelaContatos.reloadData()
+        DispatchQueue.main.async {
+            self.tabelaContatos.reloadData()
+        }
+        
     }
     
     func sortLists(contatos: [Contato]) -> [[Contato]]{
-        let sortedContacts = contatos.sorted(by: { $0.name.lowercased() < $1.name.lowercased() })
+    
+        let contato = contatos.filter({$0.name != nil})
+        
+        let sortedContacts = contato.sorted(by: { String(describing: $0.name?.lowercased()) < String(describing: $1.name?.lowercased()) })
         
         let groupedContacts = sortedContacts.reduce([[Contato]]()) {
             guard var last = $0.last else { return [[$1]] }
             var collection = $0
-            if last.first!.name.lowercased().first == $1.name.lowercased().first {
+            if last.first?.name?.lowercased().first == $1.name?.lowercased().first {
                 last += [$1]
                 collection[collection.count - 1] = last
             } else {
@@ -152,7 +175,7 @@ class ContatosViewController: UIViewController {
         } else {
             contato = contatosAtuais[section][0]
         }
-        guard let text = contato?.name.first else { return nil }
+        guard let text = contato?.name?.first else { return nil }
         label.text = "\(text)"
         label.textColor = UIColor.primaryColor
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -241,8 +264,13 @@ extension ContatosViewController: UITableViewDelegate {
 extension ContatosViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 
-        let filteredContacts = contatos.filter({$0.name.lowercased().prefix(searchText.count) == searchText.lowercased()})
-        contatosFiltrados = sortLists(contatos: filteredContacts)
+        if searchText.count == 0 {
+            searching = false
+            tabelaContatos.reloadData()
+        }
+
+        let filteredContacts = contatos?.filter({String($0.name?.lowercased().prefix(searchText.count) ?? "") == String(searchText.lowercased())})
+        contatosFiltrados = sortLists(contatos: filteredContacts ?? [])
         searching = true
         tabelaContatos.reloadData()
         setupView()
@@ -269,9 +297,8 @@ extension ContatosViewController: UISearchBarDelegate{
 }
 extension ContatosViewController: AddContactProtocol{
     func addNewContact(newContact: Contato) {
-        var c = self.contatos
-        c.append(newContact)
-        reloadData(c: c)
+        contatos?.append(newContact)
+        reloadData(c: contatos ?? [])
     }
     
     

@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct Contato {
+struct Contato: Codable {
     
-    var id: Int = -1
-    var active: Bool = true
-    var name: String = ""
-    var username: String = ""
-    var email: String = ""
-    var phone: String = ""
-    var website: String = ""
+    var id: Int?
+    var active: Bool?
+    var name: String?
+    var username: String?
+    var email: String?
+    var phone: String?
+    var website: String?
     
 }
