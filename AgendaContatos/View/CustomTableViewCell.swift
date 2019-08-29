@@ -20,6 +20,12 @@ class CustomTableViewCell: UITableViewCell {
         contatoImagem.layer.cornerRadius = contatoImagem.frame.width/2
        
     }
+    
+    override func prepareForReuse() {
+        contatoNome.text = ""
+        contatoTelefone.text = ""
+//        contatoImagem.image = UIImage()
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

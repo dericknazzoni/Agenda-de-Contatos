@@ -49,6 +49,7 @@ class DetalheContatoViewController: UIViewController {
         let viewController = AdicionarContatoViewController()
         viewController.contato = self.contato
         viewController.delegate = self
+        viewController.edditngView = true
         navigationController?.pushViewController(viewController, animated: true)
     
     }

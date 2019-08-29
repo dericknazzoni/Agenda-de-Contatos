@@ -15,6 +15,7 @@ class AdicionarContatoViewController: UIViewController {
     @IBOutlet var telefoneTextField: UITextField!
     @IBOutlet var salvarButton: UIButton!
     
+    var edditngView: Bool = false
     var delegate: ContatosProtocol?
     var delegateAdd: AddContactProtocol?
     
@@ -41,22 +42,55 @@ class AdicionarContatoViewController: UIViewController {
         }
     }
     
-    @IBAction func addContact(_ sender: Any) {
-        if var c = self.contato{
-            c.name = apelidoTextField.text ?? ""
-            c.phone = telefoneTextField.text ?? ""
-            delegate?.updateContact(newContact: c)
-            self.navigationController?.popViewController(animated: true)
-        
-        }else {
+    @IBAction func addContact(_ sender: UIButton) {
+        if edditngView {
+            // cria um contato com id igual esse
+            // atualiza o nome e telefone se foi alterado
+            // salvar na api
+            var c = contato ?? Contato()
+            c.name = apelidoTextField.text
+            c.phone = telefoneTextField.text
+            ContactService.putContact(contato: c) { (error) in
+                if error == nil{
+                    DispatchQueue.main.async {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                }else{
+                    let alert = UIAlertController(title: "Erro ao editar", message: "Problemas tecnicos", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default))
+
+                    DispatchQueue.main.async {
+                        self.present(alert, animated: true)
+                    }
+                }
+            }
+            
+        } else {
             var newContact = Contato()
             newContact.name = apelidoTextField.text ?? ""
             newContact.phone = telefoneTextField.text ?? ""
-            delegateAdd?.addNewContact(newContact: newContact)
-            self.navigationController?.popViewController(animated: true)
-            
-        }
-        
-    }
+            ContactService.postContact(contato: newContact) { (error) in
+                if error == nil{
+                    self.delegateAdd?.addNewContact(newContact: newContact)
+                    DispatchQueue.main.async {
+                         self.navigationController?.popViewController(animated: true)
+                    }
+                }else{
+                    let alert = UIAlertController(title: "Erro ao adicionar", message: "Problemas tecnicos", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                    
+                    DispatchQueue.main.async {
+                        self.present(alert, animated: true)
+                    }
+                }
+            }
+                
 
+        }
+    }
+        
+        
+        
 }
+
+
