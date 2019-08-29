@@ -145,7 +145,7 @@ class ContatosViewController: UIViewController {
         
         guard let text = contato?.name?.first else { return nil }
         DispatchQueue.main.async {
-            label.text = "\(text)"
+            label.text = "\(text)".uppercased()
             label.textColor = UIColor.primaryColor
             label.font = UIFont.boldSystemFont(ofSize: 20)
             view.backgroundColor = UIColor.secondaryColor
@@ -192,7 +192,6 @@ extension ContatosViewController: UITableViewDataSource {
         }
         
         var contato = Contato()
-        
         
         if searching{
             contato = contatosFiltrados[indexPath.section][indexPath.row]
@@ -266,7 +265,7 @@ extension ContatosViewController: UISearchBarDelegate{
             }
         }
 
-        let filteredContacts = contatos?.filter({String($0.name?.lowercased().prefix(searchText.count) ?? "") == String(searchText.lowercased())})
+        let filteredContacts = contatos?.filter({String($0.name?.lowercased().prefix(searchText.count) ?? "") == String(searchText.lowercased()) || $0.phone?.prefix(searchText.count) ?? "" == searchText})
         contatosFiltrados = sortLists(contatos: filteredContacts ?? [])
         searching = true
         DispatchQueue.main.async {

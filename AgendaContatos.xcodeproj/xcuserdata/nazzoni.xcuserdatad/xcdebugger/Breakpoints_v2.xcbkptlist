@@ -6,27 +6,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AgendaContatos/ViewController/ContatosViewController.swift"
-            timestampString = "588798967.345458"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
-            landmarkName = "tableView(_:heightForHeaderInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AgendaContatos/ViewController/AdicionarContatoViewController.swift"
-            timestampString = "588798967.346337"
+            timestampString = "588803549.285571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
@@ -42,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AgendaContatos/ViewController/AdicionarContatoViewController.swift"
-            timestampString = "588798967.346423"
+            timestampString = "588803549.285645"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "79"
@@ -58,7 +42,7 @@
                   moduleName = "AgendaContatos"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nazzoni/Desktop/AgendaContatos/AgendaContatos/ViewController/AdicionarContatoViewController.swift"
-                  timestampString = "588798967.456749"
+                  timestampString = "588801427.137308"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "79"
@@ -73,7 +57,7 @@
                   moduleName = "AgendaContatos"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/nazzoni/Desktop/AgendaContatos/AgendaContatos/ViewController/AdicionarContatoViewController.swift"
-                  timestampString = "588798967.460438"
+                  timestampString = "588801427.139564"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "80"
