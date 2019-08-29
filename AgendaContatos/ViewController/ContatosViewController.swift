@@ -33,6 +33,9 @@ class ContatosViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        makeGetRequest()
+    }
+    func makeGetRequest(){
         ContactService.loadContacts(completionHandler: { contato, error in
             if error == nil{
                 guard let contact = contato else { return }
@@ -46,7 +49,9 @@ class ContatosViewController: UIViewController {
                 self.updateData(c: newList)
             }
         })
-        tabelaContatos.reloadData()
+        DispatchQueue.main.async {
+            self.tabelaContatos.reloadData()
+        }
     }
     func updateData(c: [Contato]) {
         contatosAtuais = []
@@ -290,7 +295,9 @@ extension ContatosViewController: UISearchBarDelegate{
 extension ContatosViewController: AddContactProtocol{
     func addNewContact(newContact: Contato) {
         contatos?.append(newContact)
-        updateData(c: contatos ?? [])
+        print(contatos)
+        makeGetRequest()
+        //updateData(c: contatos ?? [])
     }
     
     
