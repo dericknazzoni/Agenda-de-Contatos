@@ -26,9 +26,13 @@ class AdicionarContatoViewController: UIViewController {
         title = "Novo Contato"
         layoutSetup()
         loadContatoEditar()
-
+        let tap = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
+        self.view.addGestureRecognizer(tap)
     }
-    
+
+    @objc func closeKeyboard(){
+        self.view.endEditing(true)
+    }
     func layoutSetup(){
         salvarButton.layer.cornerRadius = 10
         perfilView.layer.cornerRadius = perfilView.frame.width/2
@@ -71,7 +75,7 @@ class AdicionarContatoViewController: UIViewController {
             newContact.phone = telefoneTextField.text ?? ""
             ContactService.postContact(contato: newContact) { (error) in
                 if error == nil{
-                    self.delegateAdd?.addNewContact(newContact: newContact)
+//                    self.delegateAdd?.addNewContact(newContact: newContact)
                     DispatchQueue.main.async {
                          self.navigationController?.popViewController(animated: true)
                     }

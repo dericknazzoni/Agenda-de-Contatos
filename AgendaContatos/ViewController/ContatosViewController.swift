@@ -29,7 +29,14 @@ class ContatosViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigation()
         buscaContato.delegate = self
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
+//        self.view.addGestureRecognizer(tap)
     }
+    
+    @objc func closeKeyboard(){
+        self.view.endEditing(true)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -86,7 +93,7 @@ class ContatosViewController: UIViewController {
     
     @objc private func addViewController(){
         let viewController = AdicionarContatoViewController()
-        viewController.delegateAdd = self
+//        viewController.delegateAdd = self
         viewController.edditngView = false
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -253,6 +260,7 @@ extension ContatosViewController: UISearchBarDelegate{
 
         if searchText.count == 0 {
             searching = false
+            closeKeyboard()
             DispatchQueue.main.async {
                 self.tabelaContatos.reloadData()
             }
@@ -285,20 +293,26 @@ extension ContatosViewController: UISearchBarDelegate{
                 self.resultLabel.text = "Nenhum resultado encontrado"
                 self.resultLabel.textColor = UIColor.secondaryColor
                 self.resultLabel.adjustsFontSizeToFitWidth = true
+                self.closeKeyboard()
             }
         } else {
             self.resultLabel.isHidden = true
             self.tabelaContatos.isHidden = false
         }
     }
-}
-extension ContatosViewController: AddContactProtocol{
-    func addNewContact(newContact: Contato) {
-        contatos?.append(newContact)
-        print(contatos)
-        makeGetRequest()
-        //updateData(c: contatos ?? [])
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        closeKeyboard()
     }
-    
-    
+
 }
+//extension ContatosViewController: AddContactProtocol{
+//    func addNewContact(newContact: Contato) {
+////        contatos?.append(newContact)
+////        print(contatos)
+////        makeGetRequest()
+//        //updateData(c: contatos ?? [])
+//    }
+//
+//
+//}
