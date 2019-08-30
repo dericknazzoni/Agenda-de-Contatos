@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
-var json = './users.json';
+var json = './usr.json';
 var jsonFile = require(json);
 var update = require ('./update_json_module');
 
@@ -64,9 +64,11 @@ app.get('/users/search/:text/sort/:item', function(req, res) {
 app.post('/users/add', function (req, res) {
     if (Object.keys(req.body).length == 0) {
         res.status(202).send("Erro, body não enviado");
+        console.log("Erro, body não enviado");
     }
-    else if (!req.body.name || !req.body.username || !req.body.email || !req.body.phone || !req.body.website) {
+    else if (!req.body.name || !req.body.phone) {
         res.status(206).end("Body incompleto");
+        console.log("Erro, Body incompleto");
     }
     else if (req.body) {
         var id = update.AddJson(json, jsonFile, req.body);
@@ -78,10 +80,12 @@ app.post('/users/add', function (req, res) {
 //----------------------------PUT---------------------------------
 app.put('/users/mod', function (req, res) {
     if (Object.keys(req.body).length == 0) {
+        
+        console.log("Erro, body não enviado");
         res.status(202).send("Erro, body não enviado");
-        console.log("")
     }
-    else if (!req.body.name || !req.body.username || !req.body.email || !req.body.phone || !req.body.website) {
+    else if (!req.body.name || !req.body.phone) {
+        console.log("Body incompleto");
         res.status(206).end("Body incompleto");
     }
     else {
