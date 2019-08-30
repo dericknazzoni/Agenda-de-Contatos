@@ -148,7 +148,7 @@ class ContatosViewController: UIViewController {
             label.text = "\(text)".uppercased()
             label.textColor = UIColor.primaryColor
             label.font = UIFont.boldSystemFont(ofSize: 20)
-            view.backgroundColor = UIColor.secondaryColor
+            view.backgroundColor = UIColor(red: 0, green: 205/255, blue: 168/255, alpha: 1)
             view.addSubview(label)
         }
         

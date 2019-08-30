@@ -18,7 +18,7 @@ extension UIColor {
         return UIColor.gray
     }
     static var buttonColor: UIColor{
-        return UIColor.init(red: 255/255, green: 0, blue: 0, alpha: 0.6)
+        return UIColor.init(red: 0, green: 111/255, blue: 236/255, alpha: 1)
     }
     
     
