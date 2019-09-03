@@ -18,16 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyLaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="BSo-cf-egi">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myLaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Qme-Eo-8Cr">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="BSo-cf-egi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1Et-Kg-Jrx"/>
-                            <constraint firstItem="BSo-cf-egi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-44" id="9h7-rO-JJ6"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BSo-cf-egi" secondAttribute="bottom" constant="-34" id="mgs-bt-rDF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BSo-cf-egi" secondAttribute="trailing" id="mlE-2y-cfh"/>
+                            <constraint firstItem="Qme-Eo-8Cr" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="5sY-XS-BYT"/>
+                            <constraint firstItem="Qme-Eo-8Cr" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="9rp-px-AcR"/>
+                            <constraint firstItem="Qme-Eo-8Cr" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="SXa-Ad-L58"/>
+                            <constraint firstItem="Qme-Eo-8Cr" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UgW-8b-Cet"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MyLaunchScreen" width="750" height="1334"/>
+        <image name="myLaunchScreen" width="750" height="1334"/>
     </resources>
 </document>

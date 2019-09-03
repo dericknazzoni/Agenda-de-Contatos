@@ -4,9 +4,8 @@
 //
 //  Created by Derick Willians Plens Nazzoni on 31/07/19.
 //  Copyright © 2019 Derick Willians Plens Nazzoni. All rights reserved.
-//
 
-import UIKit
+  import UIKit
 
 protocol AddContactProtocol{
     func addNewContact(newContact: Contato)
@@ -93,7 +92,6 @@ class ContatosViewController: UIViewController {
     
     @objc private func addViewController(){
         let viewController = AdicionarContatoViewController()
-//        viewController.delegateAdd = self
         viewController.edditngView = false
         navigationController?.pushViewController(viewController, animated: true)
     }
